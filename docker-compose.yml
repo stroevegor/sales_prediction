@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  web:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./app
+    depends_on:
+      - postgres
+    ports:
+      - 5000:5000
+    command: gunicorn --bind 0.0.0.0:5000 flask_app:app
+    env_file:
+      ./.env
+
+  streamlit:
+    restart: always
+    build:
+      dockerfile: Dockerfile_streamlit
+      context: ./app
+    depends_on:
+      - postgres
+      - web
+    ports:
+      - 8501:8501
+    env_file:
+      ./.env
+
+  postgres:
+    restart: always
+    image: postgres:14
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    env_file:
+      ./.env
+    expose:
+      - 5432

@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>&nbsp;&nbsp;Зарегистрированные пользователи</h1>
+    <table>
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Пользователь</b></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Имя</b></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Фамилия</b></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Дата регистрации</b></td>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ user[3] }}</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ user[1] }}</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ user[2] }}</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ user[5] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
